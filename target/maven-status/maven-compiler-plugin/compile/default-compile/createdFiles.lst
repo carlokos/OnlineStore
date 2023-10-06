@@ -1,0 +1,4 @@
+com\javaschool\OnlineStore\OnlineStoreApplication.class
+com\javaschool\OnlineStore\controllers\UserController.class
+com\javaschool\OnlineStore\models\User.class
+com\javaschool\OnlineStore\repositories\UserRepository.class
