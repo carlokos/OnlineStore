@@ -1,4 +1,11 @@
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\OnlineStoreApplication.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\repositories\UserRepository.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Product.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Client_address.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Order_detail.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Order.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\controllers\UserController.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Delivery_method.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Category.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\Payment_method.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\User.java

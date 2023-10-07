@@ -2,11 +2,12 @@ package com.javaschool.OnlineStore.models;
 
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "app_users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,12 @@ public class User {
 	
 	@Column(name = "password", length=50, nullable = false, unique = false)
 	private String password;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Client_address> client_address;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Order> order;
 	
 	public Long getId() {
 		return id;
