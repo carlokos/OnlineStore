@@ -10,7 +10,7 @@ services:
   depends_on:
   - java_db
   volumes:
-  - online_store_volume:/home/java_app_data
+  - online_store_volume:/home/app_data
  pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
@@ -22,8 +22,6 @@ services:
       - "5050:80"
     depends_on:
      - java_db
-    volumes:
-     - online_store_volume:/home/pgadmin_data
  java_db:
   container_name: java_db
   image: postgres:12
@@ -34,7 +32,12 @@ services:
    POSTGRES_PASSWORD: postgres
    POSTGRES_DB: java_db
   volumes:
-  - online_store_volume:/home/java_db_data
+  - online_store_volume:/home/db_data
   
 volumes:
  online_store_volume:
+  driver: local
+  driver_opts:
+   type: none
+   o: bind
+   device: src/main/resources
