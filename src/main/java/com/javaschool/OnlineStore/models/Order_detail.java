@@ -1,9 +1,15 @@
 package com.javaschool.OnlineStore.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "order_detail")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Order_detail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,34 +25,5 @@ public class Order_detail {
 	@ManyToOne()
     @JoinColumn(name = "product_id", nullable = false)
 	private Product product;
-
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
 	
 }

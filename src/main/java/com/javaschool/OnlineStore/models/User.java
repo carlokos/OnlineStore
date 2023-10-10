@@ -4,10 +4,18 @@ package com.javaschool.OnlineStore.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "app_users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,44 +37,10 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Client_address> client_address;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Order> order;
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public String getSubname() {
-		return subname;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public void setPassword(String pw) {
-		this.password = pw;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setSubname(String subname) {
-		this.subname = subname;
-	}	
 }

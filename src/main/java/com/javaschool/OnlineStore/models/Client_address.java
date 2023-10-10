@@ -2,10 +2,18 @@ package com.javaschool.OnlineStore.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "client_address")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Client_address {
 
 	@Id
@@ -35,53 +43,6 @@ public class Client_address {
 	private User user;
 	
 	@OneToMany(mappedBy = "client_address", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Order> order;
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public String getCountry() {
-		return country;
-	}
-	
-	public String getCity() {
-		return city;
-	}
-	
-	public String getPostalCode() {
-		return postal_code;
-	}
-	
-	public String getStreet() {
-		return street;
-	}
-	
-	public String getHome() {
-		return country;
-	}
-	
-	public String getApartament() {
-		return country;
-	}
-	
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
-	public void setPostalCode(String postal_code) {
-		this.postal_code = postal_code;
-	}
-	
-	public void setHome(String home) {
-		this.home = home;
-	}
-	
-	public void setApartament(String ap) {
-		this.apartament = ap;
-	}
 }

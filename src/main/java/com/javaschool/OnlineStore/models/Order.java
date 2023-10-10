@@ -2,10 +2,18 @@ package com.javaschool.OnlineStore.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "app_order")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,67 +42,6 @@ public class Order {
 	private Delivery_method delivery_method;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Order_detail> order_detail;
-
-	public String getPayment_status() {
-		return payment_status;
-	}
-
-	public void setPayment_status(String payment_status) {
-		this.payment_status = payment_status;
-	}
-
-	public String getOrder_status() {
-		return order_status;
-	}
-
-	public void setOrder_status(String order_status) {
-		this.order_status = order_status;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Client_address getClient_address() {
-		return client_address;
-	}
-
-	public void setClient_address(Client_address client_address) {
-		this.client_address = client_address;
-	}
-
-	public Payment_method getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment_method payment) {
-		this.payment = payment;
-	}
-
-	public Delivery_method getDelivery_method() {
-		return delivery_method;
-	}
-
-	public void setDelivery_method(Delivery_method delivery_method) {
-		this.delivery_method = delivery_method;
-	}
-
-	public List<Order_detail> getOrder_detail() {
-		return order_detail;
-	}
-
-	public void setOrder_detail(List<Order_detail> order_detail) {
-		this.order_detail = order_detail;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	
 }

@@ -2,10 +2,18 @@ package com.javaschool.OnlineStore.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "payment_methods")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Payment_method {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,17 +23,6 @@ public class Payment_method {
 	private String p_method;
 	
 	@OneToMany(mappedBy = "payment", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Order> order;
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public String GetPayment_method(){
-		return p_method;
-	}
-	
-	public void setPayment_method(String pm) {
-		this.p_method = pm;
-	}
 }
