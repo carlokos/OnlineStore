@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaschool.OnlineStore.models.Category;
+import com.javaschool.OnlineStore.models.CategoryEntity;
 import com.javaschool.OnlineStore.repositories.CategoryRepository;
 
 
@@ -21,12 +21,12 @@ public class CategoriesController {
 		private CategoryRepository categoryRepository;
 		
 		@GetMapping
-		public List<Category> getAllProducts(){
+		public List<CategoryEntity> getAllProducts(){
 			return categoryRepository.findAll();
 		}
 		
 		@GetMapping("/{id}")
-		public Optional<Category> getProductById(@PathVariable Long id) {
+		public Optional<CategoryEntity> getProductById(@PathVariable Long id) {
 			return categoryRepository.findById(id);
 		}
 	

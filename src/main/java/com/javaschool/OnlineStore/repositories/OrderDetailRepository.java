@@ -2,8 +2,8 @@ package com.javaschool.OnlineStore.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.javaschool.OnlineStore.models.Order_detail;
+import com.javaschool.OnlineStore.models.Order_detailEntity;
 
-public interface OrderDetailRepository extends JpaRepository<Order_detail, Long>{
+public interface OrderDetailRepository extends JpaRepository<Order_detailEntity, Long>{
 
 }

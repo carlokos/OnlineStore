@@ -1,28 +1,50 @@
 package com.javaschool.OnlineStore.controllers;
 
-import com.javaschool.OnlineStore.models.User;
-import com.javaschool.OnlineStore.repositories.UserRepository;
+import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
+import com.javaschool.OnlineStore.dtos.UserDto;
+import com.javaschool.OnlineStore.services.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserController {
 	
-	@Autowired
-	private UserRepository userRepository;
-	
+	private final UserService userService;
+
 	@GetMapping
-	public List<User> getAllUsers(){
-		return userRepository.findAll();
+	public ResponseEntity<List<UserDto>> getAllUsers(){
+		List<UserDto> result = userService.getAllUsers();
+		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<User> getUserById(@PathVariable Long id) {
-		return userRepository.findById(id);
+	public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+		UserDto result = userService.getUserById(id);
+		return ResponseEntity.ok(result);
+	}
+
+	@PostMapping
+	public ResponseEntity<String> createNewUser(@RequestBody CreateNewUserDto dto){
+		userService.createNewUser(dto);
+		return ResponseEntity.status(201).body("User created succesfully");
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody CreateNewUserDto dto){
+		userService.updateUser(id, dto);
+		return ResponseEntity.ok("User changed succesfully");
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteUser(@PathVariable Long id){
+		userService.deleteUser(id);
+		return ResponseEntity.status(204).body("User deleted succesfully");
 	}
 }
