@@ -1,0 +1,10 @@
+<h1>All Users</h1>
+<ul>
+    <li th:each="user : ${users}">
+        <span th:text="|${user.name}|"></span>
+        <span></span>
+        <span th:text="|${user.subname}|"></span>
+        <span></span>
+        <span th:text="|${user.email}|"></span>
+    </li>
+</ul>

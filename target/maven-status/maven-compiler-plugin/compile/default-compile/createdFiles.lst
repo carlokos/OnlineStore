@@ -7,6 +7,7 @@ com\javaschool\OnlineStore\repositories\OrderDetailRepository.class
 com\javaschool\OnlineStore\exceptions\LogicExceptionHandler.class
 com\javaschool\OnlineStore\models\Order_detailEntity.class
 com\javaschool\OnlineStore\controllers\CategoriesController.class
+com\javaschool\OnlineStore\controllers\UserPageController.class
 com\javaschool\OnlineStore\services\Client_AddressService.class
 com\javaschool\OnlineStore\dtos\ProductDto.class
 com\javaschool\OnlineStore\dtos\Client_AddressDto.class
