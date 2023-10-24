@@ -38,11 +38,11 @@ public class ProductEntity {
 	@Column(nullable = false, unique=false)
 	private int stock;
 	
-	@ManyToOne()
+	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
 	private CategoryEntity category;
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<Order_detailEntity> Order_detail;
+	private List<OrderDetailEntity> Order_detail;
 	
 }

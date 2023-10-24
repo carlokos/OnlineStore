@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
+import com.javaschool.OnlineStore.dtos.LogInDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
@@ -27,8 +28,14 @@ public class UserService {
             .map(this::createUserDto)
             .toList();
     }
+
     public UserDto getUserById(Long id){
         UserEntity user = loadUser(id);
+        return createUserDto(user);
+    }
+
+    public UserDto getUserByLogIn(LogInDto dto){
+        UserEntity user = logInUser(dto);
         return createUserDto(user);
     }
 
@@ -57,16 +64,16 @@ public class UserService {
             .orElseThrow(() -> new ResourceNotFoundException("Cannot find user"));
     }
 
+    private UserEntity logInUser(LogInDto dto){
+        return userRepository.findByEmailAndPassword(dto.getEmail(), dto.getPassword())
+            .orElseThrow(() -> new ResourceNotFoundException("Email or Password incorrect"));
+    }
+
     private UserDto createUserDto(UserEntity user){
         return userMapper.createUserDto(user);
     } 
 
     private UserEntity mapDtoToEntity(CreateNewUserDto dto, UserEntity entity){
-        entity.setName(dto.getName());
-        entity.setSubname(dto.getSubname());
-        entity.setEmail(dto.getEmail());
-        entity.setPassword(dto.getPassword());
-        entity.setDate_of_birth(dto.getDate_of_birth());
-        return entity;
+        return userMapper.mapDtoToEntity(dto, entity);
     }
 }

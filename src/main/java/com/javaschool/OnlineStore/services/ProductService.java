@@ -35,6 +35,12 @@ public class ProductService {
         return createProductDto(product);
     }
 
+    public List<ProductDto> getAllProductsByCategory(Long id){
+        return productRepository.findByCategory(loadCategoryById(id)).stream()
+            .map(this::createProductDto)
+            .toList();
+    }
+
     public ProductDto createNewProduct(ProductDto dto){
         ProductEntity product = mapDtoToEntity(dto, new ProductEntity());
         if(productRepository.findByTitle(dto.getTitle()).isPresent()){
@@ -59,8 +65,13 @@ public class ProductService {
             .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
-    private CategoryEntity loadCategory(String name){
+    private CategoryEntity loadCategoryByName(String name){
         return categoryRepository.findByName(name)
+            .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+    }
+
+    private CategoryEntity loadCategoryById(Long id){
+        return categoryRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
     }
 
@@ -76,7 +87,7 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
         entity.setStock(dto.getStock());
         entity.setWeight(dto.getWeight());
-        entity.setCategory(loadCategory(dto.getCategory()));
+        entity.setCategory(loadCategoryByName(dto.getCategory()));
         return entity;
     }
 }

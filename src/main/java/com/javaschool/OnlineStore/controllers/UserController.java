@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.controllers;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
+import com.javaschool.OnlineStore.dtos.LogInDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
 import com.javaschool.OnlineStore.services.UserService;
 
@@ -27,6 +28,12 @@ public class UserController {
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
 		UserDto result = userService.getUserById(id);
+		return ResponseEntity.ok(result);
+	}
+
+	@GetMapping("/login")
+	public ResponseEntity<UserDto> logInUser(@RequestBody LogInDto dto){
+		UserDto result = userService.getUserByLogIn(dto);
 		return ResponseEntity.ok(result);
 	}
 

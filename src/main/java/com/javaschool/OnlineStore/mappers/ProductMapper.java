@@ -9,6 +9,7 @@ import com.javaschool.OnlineStore.models.ProductEntity;
 public class ProductMapper {
     public ProductDto createProductDto(ProductEntity productEntity){
         ProductDto dto = new ProductDto();
+        dto.setId(productEntity.getId());
         dto.setTitle(productEntity.getTitle());
         dto.setPrice(productEntity.getPrice());
         dto.setBrand(productEntity.getBrand());

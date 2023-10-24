@@ -1,33 +1,35 @@
 package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaschool.OnlineStore.models.CategoryEntity;
-import com.javaschool.OnlineStore.repositories.CategoryRepository;
+import com.javaschool.OnlineStore.dtos.CategoryDto;
+import com.javaschool.OnlineStore.services.CategoryService;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RestController
 @RequestMapping("/api/categories")
+@RequiredArgsConstructor
 public class CategoriesController {
-		
-		@Autowired
-		private CategoryRepository categoryRepository;
+		private final CategoryService categoryService;
 		
 		@GetMapping
-		public List<CategoryEntity> getAllProducts(){
-			return categoryRepository.findAll();
+		public ResponseEntity<List<CategoryDto>> getAllProducts(){
+			List<CategoryDto> result = categoryService.getAllCategories();
+			return ResponseEntity.ok(result);
 		}
 		
 		@GetMapping("/{id}")
-		public Optional<CategoryEntity> getProductById(@PathVariable Long id) {
-			return categoryRepository.findById(id);
+		public ResponseEntity<CategoryDto> getProductById(@PathVariable Long id) {
+			CategoryDto result = categoryService.getCategoryById(id);
+			return ResponseEntity.ok(result);
 		}
 	
 }

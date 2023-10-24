@@ -35,7 +35,7 @@ public class UserEntity {
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Client_addressEntity> client_address;
+	private List<ClientAddressEntity> client_address;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<OrderEntity> order;

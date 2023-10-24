@@ -23,22 +23,22 @@ public class OrderEntity {
 	@Column(name = "order_status", length=50, nullable = false, unique=false)
 	private String order_status;
 	
-	@ManyToOne()
+	@ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
 	private UserEntity user;
 	
-	@ManyToOne()
+	@ManyToOne
     @JoinColumn(name = "address_id", nullable = false)
-	private Client_addressEntity client_address;
+	private ClientAddressEntity client_address;
 	
-	@ManyToOne()
+	@ManyToOne
     @JoinColumn(name = "payment_method_id", nullable = false)
-	private Payment_methodEntity payment;
+	private PaymentMethodEntity payment;
 	
-	@ManyToOne()
+	@ManyToOne
     @JoinColumn(name = "delivery_method_id", nullable = false)
-	private Delivery_methodEntity delivery_method;
+	private DeliveryMethodEntity delivery_method;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<Order_detailEntity> order_detail;
+	private List<OrderDetailEntity> order_detail;
 }
