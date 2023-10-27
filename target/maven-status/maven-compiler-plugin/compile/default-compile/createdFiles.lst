@@ -8,7 +8,6 @@ com\javaschool\OnlineStore\controllers\CategoriesController.class
 com\javaschool\OnlineStore\dtos\CategoryDto.class
 com\javaschool\OnlineStore\mappers\CategoryMapper.class
 com\javaschool\OnlineStore\models\DeliveryMethodEntity.class
-com\javaschool\OnlineStore\controllers\UserPageController.class
 com\javaschool\OnlineStore\dtos\ProductDto.class
 com\javaschool\OnlineStore\dtos\CreateNewUserDto.class
 com\javaschool\OnlineStore\config\webConfig$1.class
@@ -35,5 +34,6 @@ com\javaschool\OnlineStore\models\CategoryEntity.class
 com\javaschool\OnlineStore\repositories\ClientAddressRepository.class
 com\javaschool\OnlineStore\services\CategoryService.class
 com\javaschool\OnlineStore\mappers\UserMapper.class
+com\javaschool\OnlineStore\config\modelMapperConfig.class
 com\javaschool\OnlineStore\dtos\ClientAddressDto.class
 com\javaschool\OnlineStore\dtos\UserDto.class

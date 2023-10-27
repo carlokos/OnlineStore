@@ -12,5 +12,5 @@ public class ProductDto {
     private double weight;
     private String volume;
     private int stock;
-    private String category;
+    private Long category_id;
 }

@@ -65,11 +65,6 @@ public class ProductService {
             .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
-    private CategoryEntity loadCategoryByName(String name){
-        return categoryRepository.findByName(name)
-            .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
-    }
-
     private CategoryEntity loadCategoryById(Long id){
         return categoryRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
@@ -87,7 +82,7 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
         entity.setStock(dto.getStock());
         entity.setWeight(dto.getWeight());
-        entity.setCategory(loadCategoryByName(dto.getCategory()));
+        entity.setCategory(loadCategoryById(dto.getCategory_id()));
         return entity;
     }
 }

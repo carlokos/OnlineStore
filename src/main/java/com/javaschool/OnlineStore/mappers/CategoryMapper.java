@@ -9,6 +9,7 @@ import com.javaschool.OnlineStore.models.CategoryEntity;
 public class CategoryMapper {
     public CategoryDto createCategoryDto(CategoryEntity entity){
         CategoryDto dto = new CategoryDto();
+        dto.setId(entity.getId());
         dto.setName(entity.getName());
         return dto;
     }

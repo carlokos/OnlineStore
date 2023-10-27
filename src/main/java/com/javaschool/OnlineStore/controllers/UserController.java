@@ -31,13 +31,13 @@ public class UserController {
 		return ResponseEntity.ok(result);
 	}
 
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<UserDto> logInUser(@RequestBody LogInDto dto){
 		UserDto result = userService.getUserByLogIn(dto);
 		return ResponseEntity.ok(result);
 	}
 
-	@PostMapping
+	@PostMapping()
 	public ResponseEntity<String> createNewUser(@RequestBody CreateNewUserDto dto){
 		userService.createNewUser(dto);
 		return ResponseEntity.status(201).body("User created succesfully");

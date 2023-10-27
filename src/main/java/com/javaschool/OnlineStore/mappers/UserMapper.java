@@ -13,7 +13,6 @@ public class UserMapper {
         dto.setName(userEntity.getName());
         dto.setSubname(userEntity.getSubname());
         dto.setEmail(userEntity.getEmail());
-        dto.setDate_of_birth(userEntity.getDate_of_birth());
         return dto;
     }
 
@@ -22,7 +21,6 @@ public class UserMapper {
         entity.setSubname(dto.getSubname());
         entity.setEmail(dto.getEmail());
         entity.setPassword(dto.getPassword());
-        entity.setDate_of_birth(dto.getDate_of_birth());
         return entity;
     }
 }

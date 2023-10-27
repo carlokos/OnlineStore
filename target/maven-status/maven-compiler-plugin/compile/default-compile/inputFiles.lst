@@ -1,3 +1,4 @@
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\modelMapperConfig.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\OnlineStoreApplication.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\exceptions\ResourceConflictException.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\UserMapper.java
@@ -15,7 +16,6 @@ D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\ClientAddressService.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\PaymentMethodEntity.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\exceptions\LogicExceptionHandler.java
-D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\controllers\UserPageController.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\webConfig.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\CategoryDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\UserDto.java

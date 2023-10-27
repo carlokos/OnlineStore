@@ -1,7 +1,5 @@
 package com.javaschool.OnlineStore.models;
 
-
-import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -24,9 +22,6 @@ public class UserEntity {
 	
 	@Column(name = "subname", length=50, nullable = false, unique=false)
 	private String subname;
-	
-	@Temporal(TemporalType.DATE)
-	private Date date_of_birth;
 	
 	@Column(name = "email", length=50, nullable = false, unique=true)
 	private String email;
