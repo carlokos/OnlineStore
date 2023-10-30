@@ -31,6 +31,22 @@ public class CategoryService {
         return createCategoryDto(categoryEntity);
     }
 
+    public void updateCategory(Long id, CategoryDto dto){
+        CategoryEntity category = loadCategory(id);
+        categoryMapper.mapDtoToEntity(dto, category);
+        categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long id){
+        categoryRepository.deleteById(id);
+    }
+
+    public CategoryDto createNewCategory(CategoryDto dto){
+        CategoryEntity entity = categoryMapper.mapDtoToEntity(dto, new CategoryEntity());
+        categoryRepository.save(entity);
+        return createCategoryDto(entity);
+    }
+    
     private CategoryEntity loadCategory(Long id){
         return categoryRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
