@@ -1,5 +1,6 @@
 package com.javaschool.OnlineStore.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -23,10 +24,10 @@ public class UserEntity {
 	@Column(name = "subname", length=50, nullable = false, unique=false)
 	private String subname;
 	
-	@Column(name = "email", length=50, nullable = false, unique=true)
+	@Column(name = "email", length=120, nullable = false, unique=true)
 	private String email;
 	
-	@Column(name = "password", length=50, nullable = false, unique = false)
+	@Column(name = "password", length=120, nullable = false, unique = false)
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -34,4 +35,10 @@ public class UserEntity {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<OrderEntity> order;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<RolEntity> roles = new ArrayList<>();
+
 }

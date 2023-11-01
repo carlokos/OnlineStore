@@ -42,7 +42,7 @@ public class ClientAddressController {
 	}
     
     @PostMapping
-	public ResponseEntity<String> createNewProduct(@RequestBody ClientAddressDto dto){
+	public ResponseEntity<String> createNewAddress(@RequestBody ClientAddressDto dto){
 		client_AddressService.createNewAddress(dto);
 		return ResponseEntity.status(201).body("Address register for " + dto.getUser_email() + " succesfully");
 	}

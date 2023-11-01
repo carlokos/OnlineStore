@@ -2,10 +2,11 @@ package com.javaschool.OnlineStore.services;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
-import com.javaschool.OnlineStore.dtos.LogInDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
@@ -34,9 +35,14 @@ public class UserService {
         return createUserDto(user);
     }
 
-    public UserDto getUserByLogIn(LogInDto dto){
-        UserEntity user = logInUser(dto);
-        return createUserDto(user);
+    public UserDto getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if( authentication == null || !authentication.isAuthenticated()){
+            throw new ResourceNotFoundException("User not authenticated");
+        }
+        String email = authentication.getName();
+        UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return userMapper.createUserDto(user);
     }
 
     public UserDto createNewUser(CreateNewUserDto dto){
@@ -62,11 +68,6 @@ public class UserService {
     private UserEntity loadUser(Long id){
         return userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Cannot find user"));
-    }
-
-    private UserEntity logInUser(LogInDto dto){
-        return userRepository.findByEmailAndPassword(dto.getEmail(), dto.getPassword())
-            .orElseThrow(() -> new ResourceNotFoundException("Email or Password incorrect"));
     }
 
     private UserDto createUserDto(UserEntity user){
