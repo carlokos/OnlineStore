@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
+import com.javaschool.OnlineStore.dtos.passwordDto;
 import com.javaschool.OnlineStore.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 	
 	private final UserService userService;
+	
 
 	@GetMapping
 	public ResponseEntity<List<UserDto>> getAllUsers(){
@@ -46,6 +48,12 @@ public class UserController {
 	public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody CreateNewUserDto dto){
 		userService.updateUser(id, dto);
 		return ResponseEntity.ok("User changed succesfully");
+	}
+
+	@PutMapping("/password/{id}")
+	public ResponseEntity<String> updatePassword(@PathVariable Long id, @RequestBody passwordDto dto){
+		userService.updatePassword(id, dto);
+		return ResponseEntity.ok("Password changed succesfully");
 	}
 
 	@DeleteMapping("/{id}")

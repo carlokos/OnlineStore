@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
+import com.javaschool.OnlineStore.dtos.passwordDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
 import com.javaschool.OnlineStore.mappers.UserMapper;
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public List<UserDto> getAllUsers(){
         return userRepository.findAll().stream()
@@ -50,14 +53,21 @@ public class UserService {
         if(userRepository.findByEmail(dto.getEmail()).isPresent()){
             throw new ResourceConflictException("Email already taken");
         }
-        //contraseña, si se puede cifrarla 
         userRepository.save(user);
         return createUserDto(user);
     }
 
     public void updateUser(Long id, CreateNewUserDto dto){
         UserEntity user = loadUser(id);
-        mapDtoToEntity(dto, user);
+        user.setEmail(dto.getEmail());
+        user.setName(dto.getName());
+        user.setSubname(dto.getSubname());
+        userRepository.save(user);
+    }
+
+    public void updatePassword(Long id, passwordDto dto){
+        UserEntity user = loadUser(id);
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);
     }
 

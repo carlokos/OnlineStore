@@ -6,6 +6,7 @@ com\javaschool\OnlineStore\controllers\CategoriesController.class
 com\javaschool\OnlineStore\OnlineStoreApplication.class
 com\javaschool\OnlineStore\models\ClientAddressEntity.class
 com\javaschool\OnlineStore\models\OrderDetailEntity.class
+com\javaschool\OnlineStore\dtos\passwordDto.class
 com\javaschool\OnlineStore\models\OrderEntity.class
 com\javaschool\OnlineStore\security\Services\CustomUserDetailsService.class
 com\javaschool\OnlineStore\repositories\ProductRepository.class
