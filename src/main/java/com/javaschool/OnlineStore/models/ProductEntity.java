@@ -45,4 +45,6 @@ public class ProductEntity {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<OrderDetailEntity> Order_detail;
 	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<CartEntity> cart;
 }

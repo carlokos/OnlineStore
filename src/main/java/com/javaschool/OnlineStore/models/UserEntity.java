@@ -31,10 +31,13 @@ public class UserEntity {
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<ClientAddressEntity> client_address;
+	private List<ClientAddressEntity> clientAddress;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<OrderEntity> order;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<CartEntity> cart;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

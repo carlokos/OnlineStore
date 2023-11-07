@@ -4,19 +4,33 @@ import org.springframework.stereotype.Component;
 
 import com.javaschool.OnlineStore.dtos.ClientAddressDto;
 import com.javaschool.OnlineStore.models.ClientAddressEntity;
+import com.javaschool.OnlineStore.models.UserEntity;
 
 @Component
 public class ClientAddressConverter {
     public ClientAddressDto createAddressDto(ClientAddressEntity addressEntity){
         ClientAddressDto dto = new ClientAddressDto();
+        dto.setId(addressEntity.getId());
         dto.setCountry(addressEntity.getCountry());
         dto.setApartament(addressEntity.getApartament());
         dto.setCity(addressEntity.getCity());
         dto.setHome(addressEntity.getHome());
         dto.setPostal_code(addressEntity.getPostal_code());
         dto.setStreet(addressEntity.getStreet());
-        dto.setUser_email(addressEntity.getUser().getEmail());
+        dto.setUser_id(addressEntity.getUser().getId());
         return dto;
     }
     
+    public ClientAddressEntity mapDtoToEntity(ClientAddressDto dto, ClientAddressEntity entity,
+    UserEntity user){
+        entity.setId(dto.getId());
+        entity.setCountry(dto.getCountry());
+        entity.setApartament(dto.getApartament());
+        entity.setCity(dto.getCity());
+        entity.setHome(dto.getHome());
+        entity.setPostal_code(dto.getPostal_code());
+        entity.setStreet(dto.getStreet());
+        entity.setUser(user);
+        return entity;
+    }
 }

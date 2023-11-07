@@ -29,7 +29,6 @@ public class ClientAddressService {
             .toList();
     }
 
-    //Return all addresses of a user
     public List<ClientAddressDto> getClientAddressbyUser(Long id){
         UserEntity user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return client_AddressRepository.findAllByUser(user).stream()
@@ -66,18 +65,11 @@ public class ClientAddressService {
         return client_AddressRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address not found"));
     }
 
-    private UserEntity loadUser(String email){
-        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    private UserEntity loadUser(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 
     private ClientAddressEntity mapDtoToEntity(ClientAddressDto dto, ClientAddressEntity entity){
-        entity.setApartament(dto.getApartament());
-        entity.setCity(dto.getCity());
-        entity.setCountry(dto.getCountry());
-        entity.setHome(dto.getHome());
-        entity.setPostal_code(dto.getPostal_code());
-        entity.setStreet(dto.getStreet());
-        entity.setUser(loadUser(dto.getUser_email()));
-        return entity;
+       return client_AddressMapper.mapDtoToEntity(dto, entity, loadUser(dto.getUser_id()));
     }
 }

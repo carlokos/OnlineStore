@@ -75,14 +75,6 @@ public class ProductService {
     }
 
     private ProductEntity mapDtoToEntity(ProductDto dto, ProductEntity entity){
-        entity.setTitle(dto.getTitle());
-        entity.setBrand(dto.getBrand());
-        entity.setVolume(dto.getVolume());
-        entity.setColor(dto.getColor());
-        entity.setPrice(dto.getPrice());
-        entity.setStock(dto.getStock());
-        entity.setWeight(dto.getWeight());
-        entity.setCategory(loadCategoryById(dto.getCategory_id()));
-        return entity;
+        return productMapper.mapDtoToEntity(dto, entity, loadCategoryById(dto.getId()));
     }
 }
