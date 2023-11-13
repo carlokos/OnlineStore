@@ -3,6 +3,7 @@ package com.javaschool.OnlineStore.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaschool.OnlineStore.dtos.CategoryDto;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
@@ -12,34 +13,36 @@ import com.javaschool.OnlineStore.models.ProductEntity;
 import com.javaschool.OnlineStore.repositories.CategoryRepository;
 import com.javaschool.OnlineStore.repositories.ProductRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
     private final CategoryMapper categoryMapper;
 
+    @Transactional(readOnly = true)
     public List<CategoryDto> getAllCategories() {
         return categoryRepository.findAll().stream()
                 .map(this::createCategoryDto)
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public CategoryDto getCategoryById(Long id) {
         CategoryEntity categoryEntity = loadCategory(id);
         return createCategoryDto(categoryEntity);
     }
 
+    @Transactional
     public void updateCategory(Long id, CategoryDto dto) {
         CategoryEntity category = loadCategory(id);
         categoryMapper.mapDtoToEntity(dto, category);
         categoryRepository.save(category);
     }
 
+    @Transactional
     public void deleteCategory(Long id) {
         CategoryEntity defaultCategory = loadCategory(Long.valueOf(0));
         List<ProductEntity> products = productRepository.findByCategory(loadCategory(id));
@@ -54,6 +57,7 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
+    @Transactional
     public CategoryDto createNewCategory(CategoryDto dto) {
         CategoryEntity entity = categoryMapper.mapDtoToEntity(dto, new CategoryEntity());
         categoryRepository.save(entity);

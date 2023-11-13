@@ -18,10 +18,10 @@ public class OrderEntity {
 	private Long id;
 	
 	@Column(name = "payment_status", length=50, nullable = false, unique=false)
-	private String payment_status;
+	private String paymentStatus;
 	
 	@Column(name = "order_status", length=50, nullable = false, unique=false)
-	private String order_status;
+	private String orderStatus;
 	
 	@ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

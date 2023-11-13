@@ -3,6 +3,7 @@ package com.javaschool.OnlineStore.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaschool.OnlineStore.dtos.CartDto;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
@@ -14,24 +15,24 @@ import com.javaschool.OnlineStore.repositories.CartRepository;
 import com.javaschool.OnlineStore.repositories.ProductRepository;
 import com.javaschool.OnlineStore.repositories.UserRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class CartService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final CartMapper cartMapper;
 
+    @Transactional(readOnly = true)
     public List<CartDto> getUserCart(Long userId){
         return cartRepository.findByUser(loadUser(userId)).stream()
             .map(this::createCartDto)
             .toList();
     }
 
+    @Transactional
     public CartDto newCart(CartDto dto){
         CartEntity cart = mapDtoToEntity(dto, new CartEntity());
 
@@ -39,6 +40,7 @@ public class CartService {
         return createCartDto(cart);
     }
 
+    @Transactional
     public void updateCart(Long id, CartDto dto){
         CartEntity cart = loadCart(id);
         mapDtoToEntity(dto, cart);
@@ -46,6 +48,7 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    @Transactional
     public void deleteCart(Long id){
         cartRepository.deleteById(id);
     }

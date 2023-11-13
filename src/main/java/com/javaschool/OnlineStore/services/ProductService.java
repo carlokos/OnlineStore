@@ -3,6 +3,7 @@ package com.javaschool.OnlineStore.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaschool.OnlineStore.dtos.ProductDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
@@ -13,34 +14,36 @@ import com.javaschool.OnlineStore.models.ProductEntity;
 import com.javaschool.OnlineStore.repositories.CategoryRepository;
 import com.javaschool.OnlineStore.repositories.ProductRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final CategoryRepository categoryRepository;
 
+    @Transactional(readOnly = true)
     public List<ProductDto> getAllProducts(){
         return productRepository.findAll().stream()
             .map(this::createProductDto)
             .toList();
     }
 
+    @Transactional(readOnly = true)
     public ProductDto getProductById(Long id){
         ProductEntity product = loadProduct(id);
         return createProductDto(product);
     }
 
+    @Transactional(readOnly = true)
     public List<ProductDto> getAllProductsByCategory(Long id){
         return productRepository.findByCategory(loadCategoryById(id)).stream()
             .map(this::createProductDto)
             .toList();
     }
 
+    @Transactional
     public ProductDto createNewProduct(ProductDto dto){
         ProductEntity product = mapDtoToEntity(dto, new ProductEntity());
         if(productRepository.findByTitle(dto.getTitle()).isPresent()){
@@ -50,12 +53,14 @@ public class ProductService {
         return createProductDto(product);
     }
 
+    @Transactional
     public void updateProduct(Long id, ProductDto dto){
         ProductEntity product = loadProduct(id);
         mapDtoToEntity(dto, product);
         productRepository.save(product);
     }
 
+    @Transactional
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
     }

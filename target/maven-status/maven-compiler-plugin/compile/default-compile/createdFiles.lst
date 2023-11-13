@@ -5,8 +5,10 @@ com\javaschool\OnlineStore\dtos\AuthResponseDto.class
 com\javaschool\OnlineStore\controllers\CategoriesController.class
 com\javaschool\OnlineStore\OnlineStoreApplication.class
 com\javaschool\OnlineStore\models\ClientAddressEntity.class
+com\javaschool\OnlineStore\services\OrderService.class
 com\javaschool\OnlineStore\models\OrderDetailEntity.class
 com\javaschool\OnlineStore\dtos\passwordDto.class
+com\javaschool\OnlineStore\repositories\DeliveryMethodRepository.class
 com\javaschool\OnlineStore\models\OrderEntity.class
 com\javaschool\OnlineStore\security\Services\CustomUserDetailsService.class
 com\javaschool\OnlineStore\repositories\ProductRepository.class
@@ -31,6 +33,7 @@ com\javaschool\OnlineStore\dtos\ClientAddressDto.class
 com\javaschool\OnlineStore\security\jwt\tokenGenerator.class
 com\javaschool\OnlineStore\mappers\ClientAddressConverter.class
 com\javaschool\OnlineStore\services\ProductService.class
+com\javaschool\OnlineStore\repositories\PaymentMethodRepository.class
 com\javaschool\OnlineStore\repositories\OrderDetailRepository.class
 com\javaschool\OnlineStore\exceptions\LogicExceptionHandler.class
 com\javaschool\OnlineStore\services\CartService.class
@@ -45,11 +48,15 @@ com\javaschool\OnlineStore\mappers\ProductMapper.class
 com\javaschool\OnlineStore\security\jwt\JwtAuthEntryPoint.class
 com\javaschool\OnlineStore\controllers\UserController.class
 com\javaschool\OnlineStore\repositories\CategoryRepository.class
+com\javaschool\OnlineStore\controllers\OrderController.class
+com\javaschool\OnlineStore\services\AuthService.class
+com\javaschool\OnlineStore\dtos\OrderDto.class
 com\javaschool\OnlineStore\controllers\AuthController.class
 com\javaschool\OnlineStore\controllers\ProductController.class
 com\javaschool\OnlineStore\repositories\OrderRepository.class
 com\javaschool\OnlineStore\exceptions\ResourceNotFoundException.class
 com\javaschool\OnlineStore\models\CategoryEntity.class
+com\javaschool\OnlineStore\mappers\OrderMapper.class
 com\javaschool\OnlineStore\repositories\RolRespository.class
 com\javaschool\OnlineStore\security\SecurityConstants.class
 com\javaschool\OnlineStore\dtos\UserDto.class

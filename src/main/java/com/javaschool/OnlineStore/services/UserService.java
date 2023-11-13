@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
@@ -16,28 +17,29 @@ import com.javaschool.OnlineStore.mappers.UserMapper;
 import com.javaschool.OnlineStore.models.UserEntity;
 import com.javaschool.OnlineStore.repositories.UserRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional(readOnly = true)
     public List<UserDto> getAllUsers(){
         return userRepository.findAll().stream()
             .map(this::createUserDto)
             .toList();
     }
 
+    @Transactional(readOnly = true)
     public UserDto getUserById(Long id){
         UserEntity user = loadUser(id);
         return createUserDto(user);
     }
 
+    @Transactional(readOnly = true)
     public UserDto getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if( authentication == null || !authentication.isAuthenticated()){
@@ -48,6 +50,7 @@ public class UserService {
         return userMapper.createUserDto(user);
     }
 
+    @Transactional
     public UserDto createNewUser(CreateNewUserDto dto){
         UserEntity user = mapDtoToEntity(dto, new UserEntity());
         if(userRepository.findByEmail(dto.getEmail()).isPresent()){
@@ -57,6 +60,7 @@ public class UserService {
         return createUserDto(user);
     }
 
+    @Transactional
     public void updateUser(Long id, CreateNewUserDto dto){
         UserEntity user = loadUser(id);
         user.setEmail(dto.getEmail());
@@ -65,12 +69,14 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
     public void updatePassword(Long id, passwordDto dto){
         UserEntity user = loadUser(id);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);
     }
 
+    @Transactional
     public void deleteUser(Long id){
         userRepository.deleteById(id);
     }
