@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CartEntity {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 	
     private int quantity;
 

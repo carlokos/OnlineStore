@@ -13,32 +13,32 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class OrderEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 	
-	@Column(name = "payment_status", length=50, nullable = false, unique=false)
-	private String paymentStatus;
+    @Column(name = "payment_status", length=50, nullable = false, unique=false)
+    private String paymentStatus;
 	
-	@Column(name = "order_status", length=50, nullable = false, unique=false)
-	private String orderStatus;
+    @Column(name = "order_status", length=50, nullable = false, unique=false)
+    private String orderStatus;
 	
-	@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-	private UserEntity user;
+    private UserEntity user;
 	
-	@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "address_id", nullable = false)
-	private ClientAddressEntity client_address;
+    private ClientAddressEntity client_address;
 	
-	@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "payment_method_id", nullable = false)
-	private PaymentMethodEntity payment;
+    private PaymentMethodEntity payment;
 	
-	@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "delivery_method_id", nullable = false)
-	private DeliveryMethodEntity delivery_method;
+    private DeliveryMethodEntity delivery_method;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<OrderDetailEntity> order_detail;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderDetailEntity> order_detail;
 }
