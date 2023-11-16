@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,7 @@ public class ClientAddressController {
     @PostMapping
 	public ResponseEntity<String> createNewAddress(@RequestBody ClientAddressDto dto){
 		client_AddressService.createNewAddress(dto);
-		return ResponseEntity.status(201).body("Address register succesfully");
+		return ResponseEntity.status(HttpStatus.CREATED).body("Address register succesfully");
 	}
 
     @PutMapping("/{id}")
@@ -56,6 +57,6 @@ public class ClientAddressController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAddress(@PathVariable Long id){
         client_AddressService.deleteAddress(id);
-        return ResponseEntity.status(204).body("Address remove succesfully");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Address remove succesfully");
     }
 }

@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class ProductController {
 	@PostMapping
 	public ResponseEntity<String> createNewProduct(@RequestBody ProductDto dto){
 		productService.createNewProduct(dto);
-		return ResponseEntity.status(201).body("Product created succesfully");
+		return ResponseEntity.status(HttpStatus.CREATED).body("Product created succesfully");
 	}
 
 	@PutMapping("/{id}")
@@ -50,6 +51,6 @@ public class ProductController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteProduct(@PathVariable Long id){
 		productService.deleteProduct(id);
-		return ResponseEntity.status(204).body("Product deleted succesfully");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Product deleted succesfully");
 	}
 }

@@ -33,6 +33,16 @@ public class CartService {
     }
 
     @Transactional
+    public void modifyProductCart(Long user_id, Long product_id){
+        CartEntity cart = loadCartByUserAndProduct(user_id, product_id);
+
+        if(cart != null){
+            cart.setQuantity(cart.getQuantity() + 1);
+            cartRepository.save(cart);
+        }
+    }
+
+    @Transactional
     public CartDto newCart(CartDto dto){
         CartEntity cart = mapDtoToEntity(dto, new CartEntity());
 
@@ -53,9 +63,20 @@ public class CartService {
         cartRepository.deleteById(id);
     }
 
+    @Transactional
+    public void clearUserCart(Long id){
+        List<CartEntity> userCart = cartRepository.findByUser(loadUser(id));
+        cartRepository.deleteAll(userCart);
+    }
+
     private CartEntity loadCart(Long id){
         return cartRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
     }
+
+    private CartEntity loadCartByUserAndProduct(Long user_id, Long product_id){
+        return cartRepository.findByUser_IdAndProduct_Id(user_id, product_id);
+    }
+
     private UserEntity loadUser(Long id){
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }

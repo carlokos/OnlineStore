@@ -31,9 +31,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrder(@RequestBody OrderDto dto){
-        orderService.newOrder(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Order created succesfully");
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto dto){
+        OrderDto result = orderService.newOrder(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
     @PutMapping("/{id}")

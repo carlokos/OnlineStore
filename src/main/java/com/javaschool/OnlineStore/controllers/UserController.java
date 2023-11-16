@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +42,7 @@ public class UserController {
 	@PostMapping()
 	public ResponseEntity<String> createNewUser(@RequestBody CreateNewUserDto dto){
 		userService.createNewUser(dto);
-		return ResponseEntity.status(201).body("User created succesfully");
+		return ResponseEntity.status(HttpStatus.CREATED).body("User created succesfully");
 	}
 
 	@PutMapping("/{id}")
@@ -59,6 +60,6 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable Long id){
 		userService.deleteUser(id);
-		return ResponseEntity.status(204).body("User deleted succesfully");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body("User deleted succesfully");
 	}
 }

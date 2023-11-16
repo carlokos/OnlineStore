@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class CartController {
     @PostMapping
     public ResponseEntity<String> createNewCart(@RequestBody CartDto dto){
         cartService.newCart(dto);
-        return ResponseEntity.status(201).body("Cart created succesfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Cart created succesfully");
     }
 
     @PutMapping("/{id}")
@@ -41,9 +42,22 @@ public class CartController {
         return ResponseEntity.ok("Cart updated succesfully");
     }
 
+    @PutMapping("/{userId}/{productId}")
+    public ResponseEntity<String> addQuantityToProduct(@PathVariable Long userId, @PathVariable Long productId){
+        cartService.modifyProductCart(userId, productId);
+        return ResponseEntity.ok("Cart updated succesfully");
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCart(@PathVariable Long id){
         cartService.deleteCart(id);
-        return ResponseEntity.status(204).body("Cart deleted succesfully");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Cart deleted succesfully");
+    }
+    
+    //this id represents the User id not the cart id
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<String> clearUserCart(@PathVariable Long id){
+        cartService.clearUserCart(id);
+        return ResponseEntity.status((HttpStatus.NO_CONTENT)).body("User Cart cleared succesfully");
     }
 }

@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class CategoriesController {
 	@PostMapping
 	public ResponseEntity<String> createNewCategory(@RequestBody CategoryDto dto){
 		categoryService.createNewCategory(dto);
-		return ResponseEntity.status(201).body("new category created succesfully");
+		return ResponseEntity.status(HttpStatus.CREATED).body("new category created succesfully");
 	}
 		
 	@PutMapping("/{id}")
@@ -51,6 +52,6 @@ public class CategoriesController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteCategory(@PathVariable Long id){
 		categoryService.deleteCategory(id);
-		return ResponseEntity.status(204).body("Category deleted succesfully");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Category deleted succesfully");
 	}
 }
