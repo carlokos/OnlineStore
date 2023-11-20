@@ -16,6 +16,8 @@ public class OrderMapper {
         dto.setId(orderEntity.getId());
         dto.setPaymentStatus(orderEntity.getPaymentStatus());
         dto.setOrderStatus(orderEntity.getOrderStatus());
+        dto.setTotalPrice(orderEntity.getTotalPrice());
+        dto.setOrderDate(orderEntity.getOrderDate());
         dto.setUserId(orderEntity.getUser().getId());
         dto.setAddressId(orderEntity.getClient_address().getId());
         dto.setPaymentId(orderEntity.getPayment().getId());
@@ -29,6 +31,8 @@ public class OrderMapper {
         entity.setId(dto.getId());
         entity.setPaymentStatus(dto.getPaymentStatus());
         entity.setOrderStatus(dto.getOrderStatus());
+        entity.setOrderDate(dto.getOrderDate());
+        entity.setTotalPrice(dto.getTotalPrice());
         entity.setUser(user);
         entity.setClient_address(address);
         entity.setPayment(payment);

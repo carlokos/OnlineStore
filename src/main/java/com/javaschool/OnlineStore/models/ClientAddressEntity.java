@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ClientAddressEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,7 +37,7 @@ public class ClientAddressEntity {
 	private String apartament;
 	
 	@ManyToOne
-        @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
 	private UserEntity user;
 	
 	@OneToMany(mappedBy = "client_address", cascade = CascadeType.ALL)

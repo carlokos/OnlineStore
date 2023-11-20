@@ -38,6 +38,23 @@ public class OrderService {
             .toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<OrderDto> getAllOrders(){
+        return orderRepository.findAll().stream()
+            .map(this::createOrderDto)
+            .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public double getMonthlyRevenue(int month){
+        return orderRepository.getTotalRevenueByMonth(month);
+    }
+
+    @Transactional(readOnly = true)
+    public double getWeeklyRevenue(int week){
+        return orderRepository.getTotalRevenueByWeek(week);
+    }
+
     @Transactional
     public OrderDto newOrder(OrderDto dto){
         OrderEntity order = mapDtoToEntity(dto, new OrderEntity());

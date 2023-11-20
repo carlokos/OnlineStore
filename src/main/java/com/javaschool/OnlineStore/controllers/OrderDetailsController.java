@@ -36,6 +36,32 @@ public class OrderDetailsController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/count/{id}")
+    public ResponseEntity<Long> getOrderCount(@PathVariable Long id){
+        Long result = orderDetailService.getOrderDetailsCount(id);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/top-categories")
+    public ResponseEntity<List<Object[]>> getTopSellingCategories(){
+        List<Object[]> result = orderDetailService.getTopSellingCategories();
+        return ResponseEntity.ok(result);
+    }
+
+    //This id represents the orderDetails id
+    @GetMapping("/totalPrice/{id}")
+    public ResponseEntity<Double> getTotalPrice(@PathVariable Long id){
+        double result = orderDetailService.calculateTotalPrice(id);
+        return ResponseEntity.ok(result);
+    }
+
+    //this id represents the Order id
+    @GetMapping("/totalOrderPrice/{id}")
+    public ResponseEntity<Double> getTotalOrderPrice(@PathVariable Long id){
+        double result = orderDetailService.calculateOrderTotalPrice(id);
+        return ResponseEntity.ok(result);
+    }
+
     @PostMapping
     public ResponseEntity<String> createOrderDetails(@RequestBody List<OrderDetailDto> orderDetails){
         orderDetailService.createOrderDetails(orderDetails);

@@ -13,38 +13,38 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ProductEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-    @Column(length=50, nullable = false, unique=true)
-    private String title;
+	@Column(length=50, nullable = false, unique=true)
+	private String title;
 	
-    @Column(nullable = false, unique=false)
-    private double price;
+	@Column(nullable = false, unique=false)
+	private double price;
 	
-    @Column(length=50, nullable = false, unique=false)
-    private String brand;
+	@Column(length=50, nullable = false, unique=false)
+	private String brand;
 	
-    @Column(length=50, nullable = false, unique=false)
-    private String color;
+	@Column(length=50, nullable = false, unique=false)
+	private String color;
 	
-    @Column(nullable = false, unique=false)
-    private double weight;
+	@Column(nullable = false, unique=false)
+	private double weight;
 
-    @Column(length=50, nullable = false, unique=false)
-    private String volume;
+	@Column(length=50, nullable = false, unique=false)
+	private String volume;
 	
-    @Column(nullable = false, unique=false)
-    private int stock;
+	@Column(nullable = false, unique=false)
+	private int stock;
 	
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private CategoryEntity category;
+	private CategoryEntity category;
 	
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<OrderDetailEntity> Order_detail;
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private List<OrderDetailEntity> Order_detail;
 	
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartEntity> cart;
 }

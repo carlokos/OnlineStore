@@ -34,6 +34,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public List<UserDto> getTopUsers(){
+        return userRepository.findAllByOrderByLoginCountDesc().stream()
+            .map(this::createUserDto)
+            .toList();
+    }
+
+    @Transactional(readOnly = true)
     public UserDto getUserById(Long id){
         UserEntity user = loadUser(id);
         return createUserDto(user);

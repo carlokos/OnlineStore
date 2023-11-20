@@ -30,9 +30,15 @@ public class ProductController {
 		return ResponseEntity.ok(result);
 	}
 
-	@GetMapping("category/{id}")
+	@GetMapping("/category/{id}")
 	public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@PathVariable Long id){
 		List<ProductDto> result = productService.getAllProductsByCategory(id);
+		return ResponseEntity.ok(result);
+	}
+
+	@GetMapping("/top-selling")
+	public ResponseEntity<List<Object[]>> getTopSellingProducts(){
+		List<Object[]> result = productService.getTopSellingProducts();
 		return ResponseEntity.ok(result);
 	}
 

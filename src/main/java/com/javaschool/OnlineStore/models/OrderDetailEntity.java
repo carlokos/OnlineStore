@@ -11,17 +11,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class OrderDetailEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private int quantity;
 	
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private OrderEntity order;
+	private OrderEntity order;
 	
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private ProductEntity product;
+	private ProductEntity product;
+	
 }

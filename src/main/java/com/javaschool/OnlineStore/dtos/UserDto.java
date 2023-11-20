@@ -8,4 +8,5 @@ public class UserDto {
     private String name;
     private String subname;
     private String email;
+    private int loginCount;
 }

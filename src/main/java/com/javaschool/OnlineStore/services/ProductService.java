@@ -43,6 +43,12 @@ public class ProductService {
             .toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<Object[]> getTopSellingProducts(){
+        return productRepository.findBestSoldProducts().stream()
+            .toList();
+    }
+
     @Transactional
     public ProductDto createNewProduct(ProductDto dto){
         ProductEntity product = mapDtoToEntity(dto, new ProductEntity());

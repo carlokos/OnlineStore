@@ -23,6 +23,7 @@ public class UserMapper {
         dto.setName(userEntity.getName());
         dto.setSubname(userEntity.getSubname());
         dto.setEmail(userEntity.getEmail());
+        dto.setLoginCount(userEntity.getLoginCount());
         return dto;
     }
 
@@ -31,6 +32,7 @@ public class UserMapper {
         entity.setSubname(dto.getSubname());
         entity.setEmail(dto.getEmail());
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        entity.setLoginCount(0);
         return entity;
     }
 }

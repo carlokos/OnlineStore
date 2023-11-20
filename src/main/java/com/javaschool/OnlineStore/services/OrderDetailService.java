@@ -39,6 +39,41 @@ public class OrderDetailService {
             .toList();
     }
 
+    @Transactional(readOnly = true)
+    public double calculateTotalPrice(Long orderDetailsId){
+        OrderDetailEntity orderDetail = loadOrderDetail(orderDetailsId);
+
+        ProductEntity product = orderDetail.getProduct();
+        int quantity = orderDetail.getQuantity();
+
+        double totalPrice = product.getPrice() * quantity;
+
+        return totalPrice;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Object[]> getTopSellingCategories(){
+        return orderDetailRepository.getTopSellingCategories();
+    }
+
+    @Transactional(readOnly = true)
+    public double calculateOrderTotalPrice(Long orderId){
+        List<OrderDetailEntity> orderDetails = orderDetailRepository.findByOrder(loadOrder(orderId));
+        double totalPrice = 0.0;
+
+        for (OrderDetailEntity orderDetail : orderDetails) {
+            double orderDetailPrice = calculateTotalPrice(orderDetail.getId());
+            totalPrice += orderDetailPrice;
+        }
+
+        return totalPrice;
+    }
+
+    @Transactional(readOnly = true)
+    public Long getOrderDetailsCount(Long id){
+        return orderDetailRepository.countByOrder(loadOrder(id));
+    }
+
     @Transactional
     public List<OrderDetailDto> createOrderDetails(List<OrderDetailDto> cart){
         List<OrderDetailDto> listOrder = new ArrayList<>();

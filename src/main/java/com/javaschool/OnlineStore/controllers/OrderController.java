@@ -30,6 +30,24 @@ public class OrderController {
        return ResponseEntity.ok(result);
     }
 
+    @GetMapping
+    public ResponseEntity<List<OrderDto>> getAllOrders(){
+        List<OrderDto> result = orderService.getAllOrders();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/montly-revenue/{month}")
+    public ResponseEntity<Double> getMontly(@PathVariable int month){
+        double result = orderService.getMonthlyRevenue(month);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/weekly-revenue/{week}")
+    public ResponseEntity<Double> getMonthly(@PathVariable int week){
+        double result = orderService.getWeeklyRevenue(week);
+        return ResponseEntity.ok(result);
+    }
+
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto dto){
         OrderDto result = orderService.newOrder(dto);

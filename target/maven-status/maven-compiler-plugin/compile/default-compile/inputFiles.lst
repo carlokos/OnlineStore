@@ -1,5 +1,6 @@
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\modelMapperConfig.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\AuthResponseDto.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\RolMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\OnlineStoreApplication.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\ProductMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\security\SecurityConfig.java
@@ -25,6 +26,7 @@ D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\OrderDetailService.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\PaymentMethodDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\controllers\OrderController.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\RolDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\ProductEntity.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\security\SecurityConstants.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\controllers\AuthController.java

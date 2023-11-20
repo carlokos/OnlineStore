@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
-	
 	private final UserService userService;
 	
-
 	@GetMapping
 	public ResponseEntity<List<UserDto>> getAllUsers(){
 		List<UserDto> result = userService.getAllUsers();
@@ -36,6 +34,12 @@ public class UserController {
 	@GetMapping("/current")
 	public ResponseEntity<UserDto> getCurrentUser(){
 		UserDto result = userService.getCurrentUser();
+		return ResponseEntity.ok(result);
+	}
+
+	@GetMapping("/top-users")
+	public ResponseEntity<List<UserDto>> getTopUsers(){
+		List<UserDto> result = userService.getTopUsers();
 		return ResponseEntity.ok(result);
 	}
 

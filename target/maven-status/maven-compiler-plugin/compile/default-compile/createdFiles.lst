@@ -6,6 +6,7 @@ com\javaschool\OnlineStore\services\OrderDetailService.class
 com\javaschool\OnlineStore\mappers\DeliveryMethodMapper.class
 com\javaschool\OnlineStore\dtos\AuthResponseDto.class
 com\javaschool\OnlineStore\controllers\CategoriesController.class
+com\javaschool\OnlineStore\dtos\RolDto.class
 com\javaschool\OnlineStore\dtos\OrderDetailDto.class
 com\javaschool\OnlineStore\services\PaymentMethodService.class
 com\javaschool\OnlineStore\OnlineStoreApplication.class
@@ -73,3 +74,4 @@ com\javaschool\OnlineStore\repositories\RolRespository.class
 com\javaschool\OnlineStore\security\SecurityConstants.class
 com\javaschool\OnlineStore\dtos\UserDto.class
 com\javaschool\OnlineStore\repositories\CartRepository.class
+com\javaschool\OnlineStore\mappers\RolMapper.class
