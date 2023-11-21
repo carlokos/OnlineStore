@@ -8,13 +8,17 @@ import com.javaschool.OnlineStore.models.OrderEntity;
 import com.javaschool.OnlineStore.models.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
-
-public interface OrderRepository extends JpaRepository<OrderEntity, Long>{
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findByUser(UserEntity user);
-    @Query("SELECT SUM(o.totalPrice) FROM OrderEntity o WHERE MONTH(o.orderDate) = :month")
-    Double getTotalRevenueByMonth(@Param("month") int month);
 
-    @Query("SELECT SUM(o.totalPrice) FROM OrderEntity o WHERE WEEK(o.orderDate) = :week")
-    Double getTotalRevenueByWeek(@Param("week") int week);
+    @Query("SELECT SUM(o.totalPrice) FROM OrderEntity o WHERE MONTH(o.orderDate) = :month AND YEAR(o.orderDate) = :year")
+    Double getTotalRevenueByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT WEEK(o.orderDate) as week, SUM(o.totalPrice) as weeklyRevenue " +
+            "FROM OrderEntity o " +
+            "WHERE MONTH(o.orderDate) = :month AND YEAR(o.orderDate) = :year " +
+            "GROUP BY week")
+    List<Map<String, Object>> getWeeklyRevenueByMonth(@Param("month") int month, @Param("year") int year);
 }

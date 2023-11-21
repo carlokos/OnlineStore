@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,15 +37,15 @@ public class OrderController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/montly-revenue/{month}")
-    public ResponseEntity<Double> getMontly(@PathVariable int month){
-        double result = orderService.getMonthlyRevenue(month);
+    @GetMapping("/montly-revenue/{month}/{year}")
+    public ResponseEntity<Double> getMonthly(@PathVariable int month, @PathVariable int year){
+        double result = orderService.getMonthlyRevenue(month, year);
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/weekly-revenue/{week}")
-    public ResponseEntity<Double> getMonthly(@PathVariable int week){
-        double result = orderService.getWeeklyRevenue(week);
+    @GetMapping("/weekly-revenue/{month}/{year}")
+    public ResponseEntity<List<Map<String, Object>>> getWeeklyRevenueByMonth(@PathVariable int month, @PathVariable int year){
+        List<Map<String, Object>> result = orderService.getWeeklyRevenue(month, year);
         return ResponseEntity.ok(result);
     }
 

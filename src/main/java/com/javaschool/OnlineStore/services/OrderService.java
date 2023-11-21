@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,13 +47,13 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public double getMonthlyRevenue(int month){
-        return orderRepository.getTotalRevenueByMonth(month);
+    public double getMonthlyRevenue(int month, int year){
+        return orderRepository.getTotalRevenueByMonth(month, year);
     }
 
     @Transactional(readOnly = true)
-    public double getWeeklyRevenue(int week){
-        return orderRepository.getTotalRevenueByWeek(week);
+    public List<Map<String, Object>> getWeeklyRevenue(int month, int year){
+        return orderRepository.getWeeklyRevenueByMonth(month, year);
     }
 
     @Transactional
