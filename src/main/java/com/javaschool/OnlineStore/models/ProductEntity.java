@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.models;
 
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -47,4 +48,18 @@ public class ProductEntity {
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartEntity> cart;
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductEntity that = (ProductEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

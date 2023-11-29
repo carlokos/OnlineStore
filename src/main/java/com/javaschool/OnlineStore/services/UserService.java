@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
-import com.javaschool.OnlineStore.dtos.passwordDto;
+import com.javaschool.OnlineStore.dtos.PasswordDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
 import com.javaschool.OnlineStore.mappers.UserMapper;
@@ -77,7 +77,7 @@ public class UserService {
     }
 
     @Transactional
-    public void updatePassword(Long id, passwordDto dto){
+    public void updatePassword(Long id, PasswordDto dto){
         UserEntity user = loadUser(id);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);

@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.javaschool.OnlineStore.security.Services.CustomUserDetailsService;
 import com.javaschool.OnlineStore.security.jwt.JwtAuthEntryPoint;
 import com.javaschool.OnlineStore.security.jwt.JwtAuthFilter;
 
@@ -21,11 +20,9 @@ import com.javaschool.OnlineStore.security.jwt.JwtAuthFilter;
 @EnableWebSecurity
 public class SecurityConfig {
     private JwtAuthEntryPoint authEntryPoint;
-    private CustomUserDetailsService userDetailsService;
     
     @Autowired
-    public SecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthEntryPoint authEntryPoint) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfig(JwtAuthEntryPoint authEntryPoint) {
         this.authEntryPoint = authEntryPoint;
     }
 

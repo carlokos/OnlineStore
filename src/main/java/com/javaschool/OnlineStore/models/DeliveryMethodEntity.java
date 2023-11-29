@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.models;
 
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,4 +23,18 @@ public class DeliveryMethodEntity {
 	
 	@OneToMany(mappedBy = "delivery_method", cascade = CascadeType.ALL)
 	private List<OrderEntity> order;
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DeliveryMethodEntity that = (DeliveryMethodEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

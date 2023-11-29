@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.javaschool.OnlineStore.models.RolEntity;
+import com.javaschool.OnlineStore.models.RoleEntity;
 
-public interface RolRespository extends JpaRepository<RolEntity, Long>{
-    Optional<RolEntity> findByName(String name);
+public interface RolRespository extends JpaRepository<RoleEntity, Long>{
+    Optional<RoleEntity> findByName(String name);
     
 }

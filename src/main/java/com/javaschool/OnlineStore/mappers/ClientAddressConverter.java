@@ -15,9 +15,9 @@ public class ClientAddressConverter {
         dto.setApartament(addressEntity.getApartament());
         dto.setCity(addressEntity.getCity());
         dto.setHome(addressEntity.getHome());
-        dto.setPostal_code(addressEntity.getPostal_code());
+        dto.setPostalCode(addressEntity.getPostal_code());
         dto.setStreet(addressEntity.getStreet());
-        dto.setUser_id(addressEntity.getUser().getId());
+        dto.setUserId(addressEntity.getUser().getId());
         return dto;
     }
     
@@ -28,7 +28,7 @@ public class ClientAddressConverter {
         entity.setApartament(dto.getApartament());
         entity.setCity(dto.getCity());
         entity.setHome(dto.getHome());
-        entity.setPostal_code(dto.getPostal_code());
+        entity.setPostal_code(dto.getPostalCode());
         entity.setStreet(dto.getStreet());
         entity.setUser(user);
         return entity;

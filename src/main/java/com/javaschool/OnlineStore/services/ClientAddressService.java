@@ -18,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class ClientAddressService {
-    private final ClientAddressRepository client_AddressRepository;
+    private final ClientAddressRepository clientAddressRepository;
     private final UserRepository userRepository;
-    private final ClientAddressConverter client_AddressMapper;
+    private final ClientAddressConverter clientAddressMapper;
 
     @Transactional(readOnly = true)
     public List<ClientAddressDto> getAllAdress(){
-        return client_AddressRepository.findAll().stream()
+        return clientAddressRepository.findAll().stream()
             .map(this::createAddressDto)
             .toList();
     }
@@ -32,7 +32,7 @@ public class ClientAddressService {
     @Transactional(readOnly = true)
     public List<ClientAddressDto> getClientAddressbyUser(Long id){
         UserEntity user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        return client_AddressRepository.findAllByUser(user).stream()
+        return clientAddressRepository.findAllByUser(user).stream()
             .map(this::createAddressDto)
             .toList();
     }
@@ -46,7 +46,7 @@ public class ClientAddressService {
     @Transactional
     public ClientAddressDto createNewAddress(ClientAddressDto dto){
         ClientAddressEntity address = mapDtoToEntity(dto, new ClientAddressEntity());
-        client_AddressRepository.save(address);
+        clientAddressRepository.save(address);
         return createAddressDto(address);
     }
 
@@ -54,20 +54,20 @@ public class ClientAddressService {
     public void updateAddress(Long id, ClientAddressDto dto){
         ClientAddressEntity addressEntity = loadAddress(id);
         mapDtoToEntity(dto, addressEntity);
-        client_AddressRepository.save(addressEntity);
+        clientAddressRepository.save(addressEntity);
     }
 
     @Transactional
     public void deleteAddress(Long id){
-        client_AddressRepository.deleteById(id);
+        clientAddressRepository.deleteById(id);
     }
 
     private ClientAddressDto createAddressDto(ClientAddressEntity address){
-        return client_AddressMapper.createAddressDto(address);
+        return clientAddressMapper.createAddressDto(address);
     }
 
     private ClientAddressEntity loadAddress(Long id){
-        return client_AddressRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address not found"));
+        return clientAddressRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address not found"));
     }
 
     private UserEntity loadUser(Long id){
@@ -75,6 +75,6 @@ public class ClientAddressService {
     }
 
     private ClientAddressEntity mapDtoToEntity(ClientAddressDto dto, ClientAddressEntity entity){
-       return client_AddressMapper.mapDtoToEntity(dto, entity, loadUser(dto.getUser_id()));
+       return clientAddressMapper.mapDtoToEntity(dto, entity, loadUser(dto.getUserId()));
     }
 }

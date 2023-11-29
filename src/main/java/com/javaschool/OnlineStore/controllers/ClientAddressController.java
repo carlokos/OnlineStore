@@ -22,41 +22,41 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/addresses")
 @RequiredArgsConstructor
 public class ClientAddressController {
-    private final ClientAddressService client_AddressService;
+    private final ClientAddressService clientAddressService;
 
     @GetMapping
     public ResponseEntity<List<ClientAddressDto>> getAllAddressses(){
-		List<ClientAddressDto> result = client_AddressService.getAllAdress();
+		List<ClientAddressDto> result = clientAddressService.getAllAdress();
 		return ResponseEntity.ok(result);
 	}
 
     @GetMapping("/{id}")
     public ResponseEntity<ClientAddressDto> getAddressById(@PathVariable Long id){
-		ClientAddressDto result = client_AddressService.getAddressById(id);
+		ClientAddressDto result = clientAddressService.getAddressById(id);
 		return ResponseEntity.ok(result);
 	}
 
     @GetMapping("/user/{id}")
     public ResponseEntity<List<ClientAddressDto>> getAllUserAddresses(@PathVariable Long id){
-		List<ClientAddressDto> result = client_AddressService.getClientAddressbyUser(id);
+		List<ClientAddressDto> result = clientAddressService.getClientAddressbyUser(id);
 		return ResponseEntity.ok(result);
 	}
     
     @PostMapping
 	public ResponseEntity<String> createNewAddress(@RequestBody ClientAddressDto dto){
-		client_AddressService.createNewAddress(dto);
+		clientAddressService.createNewAddress(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Address register succesfully");
 	}
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateAddress(@PathVariable Long id, @RequestBody ClientAddressDto dto){
-        client_AddressService.updateAddress(id, dto);
+        clientAddressService.updateAddress(id, dto);
         return ResponseEntity.ok("Address changed succesfully");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAddress(@PathVariable Long id){
-        client_AddressService.deleteAddress(id);
+        clientAddressService.deleteAddress(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Address remove succesfully");
     }
 }

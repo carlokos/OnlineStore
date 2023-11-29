@@ -29,8 +29,6 @@ public class tokenGenerator {
 				.setExpiration(expireDate)
 				.signWith(key,SignatureAlgorithm.HS512)
 				.compact();
-		System.out.println("New token :");
-		System.out.println(token);
 		return token;
     }
 

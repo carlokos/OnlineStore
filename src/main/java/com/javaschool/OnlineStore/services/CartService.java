@@ -73,8 +73,8 @@ public class CartService {
         return cartRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
     }
 
-    private CartEntity loadCartByUserAndProduct(Long user_id, Long product_id){
-        return cartRepository.findByUser_IdAndProduct_Id(user_id, product_id);
+    private CartEntity loadCartByUserAndProduct(Long userId, Long productId){
+        return cartRepository.findByUserIdAndProductId(userId, productId);
     }
 
     private UserEntity loadUser(Long id){
@@ -91,6 +91,6 @@ public class CartService {
 
     private CartEntity mapDtoToEntity(CartDto dto, CartEntity entity){
         return cartMapper.mapDtoToEntity(dto, entity, 
-        loadProduct(dto.getProduct_id()), loadUser(dto.getUser_id()));
+        loadProduct(dto.getProductId()), loadUser(dto.getUserId()));
     }
 }

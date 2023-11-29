@@ -2,6 +2,7 @@ package com.javaschool.OnlineStore.models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -49,4 +50,18 @@ public class OrderEntity {
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetailEntity> order_detail;
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrderEntity that = (OrderEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

@@ -2,7 +2,7 @@ package com.javaschool.OnlineStore.controllers;
 
 import com.javaschool.OnlineStore.dtos.CreateNewUserDto;
 import com.javaschool.OnlineStore.dtos.UserDto;
-import com.javaschool.OnlineStore.dtos.passwordDto;
+import com.javaschool.OnlineStore.dtos.PasswordDto;
 import com.javaschool.OnlineStore.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -56,7 +56,7 @@ public class UserController {
 	}
 
 	@PutMapping("/password/{id}")
-	public ResponseEntity<String> updatePassword(@PathVariable Long id, @RequestBody passwordDto dto){
+	public ResponseEntity<String> updatePassword(@PathVariable Long id, @RequestBody PasswordDto dto){
 		userService.updatePassword(id, dto);
 		return ResponseEntity.ok("Password changed succesfully");
 	}

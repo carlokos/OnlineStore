@@ -1,5 +1,7 @@
 package com.javaschool.OnlineStore.models;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +27,17 @@ public class OrderDetailEntity {
     @JoinColumn(name = "product_id", nullable = false)
 	private ProductEntity product;
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrderDetailEntity that = (OrderDetailEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

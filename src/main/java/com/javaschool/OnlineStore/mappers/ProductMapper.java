@@ -18,7 +18,7 @@ public class ProductMapper {
         dto.setStock(productEntity.getStock());
         dto.setVolume(productEntity.getVolume());
         dto.setWeight(productEntity.getWeight());
-        dto.setCategory_id(productEntity.getCategory().getId());
+        dto.setCategoryId(productEntity.getCategory().getId());
         return dto;
     }
 

@@ -19,7 +19,7 @@ import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
 import com.javaschool.OnlineStore.mappers.RolMapper;
 import com.javaschool.OnlineStore.mappers.UserMapper;
-import com.javaschool.OnlineStore.models.RolEntity;
+import com.javaschool.OnlineStore.models.RoleEntity;
 import com.javaschool.OnlineStore.models.UserEntity;
 import com.javaschool.OnlineStore.repositories.RolRespository;
 import com.javaschool.OnlineStore.repositories.UserRepository;
@@ -43,7 +43,7 @@ public class AuthService {
             throw new ResourceConflictException("Email is taken");
         }
         UserEntity newUser = mapDtoToEntity(dto, new UserEntity());
-        RolEntity roles = rolRespository.findByName("USER").get();
+        RoleEntity roles = rolRespository.findByName("USER").get();
         newUser.setRoles(Collections.singletonList(roles));
 
         userRepository.save(newUser);

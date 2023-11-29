@@ -1,4 +1,4 @@
-D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\modelMapperConfig.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\ModelMapperConfig.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\AuthResponseDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\RolMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\OnlineStoreApplication.java
@@ -11,11 +11,12 @@ D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\PaymentMethodMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\CategoryMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\CartService.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\RoleEntity.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\ClientAddressService.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\AuthService.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\repositories\RolRespository.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\security\jwt\tokenGenerator.java
-D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\webConfig.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\config\WebConfig.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\CategoryDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\UserDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\controllers\ProductController.java
@@ -63,7 +64,7 @@ D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\services\OrderService.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\CreateNewUserDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\security\jwt\JwtAuthFilter.java
-D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\passwordDto.java
+D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\PasswordDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\repositories\OrderRepository.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\mappers\DeliveryMethodMapper.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\repositories\CategoryRepository.java
@@ -73,4 +74,3 @@ D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\dtos\ClientAddressDto.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\DeliveryMethodEntity.java
 D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\security\jwt\JwtAuthEntryPoint.java
-D:\Users\mipc\Desktop\Carlos\Spring\workspace\OnlineStore\src\main\java\com\javaschool\OnlineStore\models\RolEntity.java

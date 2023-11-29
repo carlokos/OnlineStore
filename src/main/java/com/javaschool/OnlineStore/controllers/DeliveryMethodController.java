@@ -33,18 +33,18 @@ public class DeliveryMethodController {
     @PostMapping
     public ResponseEntity<String> createNewDeliveryMethod(@RequestBody DeliveryMethodDto dto){
         deliveryMethodService.newDeliveryMethod(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Delivery method created succesfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Delivery method created successfully");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateDeliveryMethod(@PathVariable Long id, @RequestBody DeliveryMethodDto dto){
         deliveryMethodService.updateDelivery(id, dto);
-        return ResponseEntity.ok("Delivery Method updated succesfully");
+        return ResponseEntity.ok("Delivery Method updated successfully");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDeliveryMethod(@PathVariable Long id){
         deliveryMethodService.deleteDeliveryMethod(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Delivery Method deleted succesfully");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Delivery Method deleted successfully");
     }
 }

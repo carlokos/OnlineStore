@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "cart")
 @Getter
@@ -12,9 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CartEntity {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private int quantity;
 
     @ManyToOne
@@ -24,4 +26,19 @@ public class CartEntity {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        CartEntity that = (CartEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }
