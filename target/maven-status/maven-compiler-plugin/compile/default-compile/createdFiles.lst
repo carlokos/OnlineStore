@@ -1,4 +1,5 @@
 com\javaschool\OnlineStore\models\ProductEntity.class
+com\javaschool\OnlineStore\mappers\ImageUtil.class
 com\javaschool\OnlineStore\dtos\LogInDto.class
 com\javaschool\OnlineStore\models\RoleEntity.class
 com\javaschool\OnlineStore\controllers\PaymentMethodController.class
@@ -12,9 +13,11 @@ com\javaschool\OnlineStore\dtos\OrderDetailDto.class
 com\javaschool\OnlineStore\services\PaymentMethodService.class
 com\javaschool\OnlineStore\OnlineStoreApplication.class
 com\javaschool\OnlineStore\models\ClientAddressEntity.class
+com\javaschool\OnlineStore\models\ImageEntity.class
 com\javaschool\OnlineStore\services\OrderService.class
 com\javaschool\OnlineStore\models\OrderDetailEntity.class
 com\javaschool\OnlineStore\repositories\DeliveryMethodRepository.class
+com\javaschool\OnlineStore\repositories\ImageRepository.class
 com\javaschool\OnlineStore\models\OrderEntity.class
 com\javaschool\OnlineStore\security\Services\CustomUserDetailsService.class
 com\javaschool\OnlineStore\repositories\ProductRepository.class
@@ -50,16 +53,18 @@ com\javaschool\OnlineStore\services\CartService.class
 com\javaschool\OnlineStore\dtos\CategoryDto.class
 com\javaschool\OnlineStore\mappers\CategoryMapper.class
 com\javaschool\OnlineStore\models\DeliveryMethodEntity.class
+com\javaschool\OnlineStore\models\ImageEntity$ImageEntityBuilder.class
+com\javaschool\OnlineStore\controllers\ImageController.class
 com\javaschool\OnlineStore\dtos\ProductDto.class
 com\javaschool\OnlineStore\dtos\CreateNewUserDto.class
 com\javaschool\OnlineStore\mappers\ProductMapper.class
-com\javaschool\OnlineStore\config\ModelMapperConfig.class
 com\javaschool\OnlineStore\mappers\PaymentMethodMapper.class
 com\javaschool\OnlineStore\controllers\DeliveryMethodController.class
 com\javaschool\OnlineStore\security\jwt\JwtAuthEntryPoint.class
 com\javaschool\OnlineStore\controllers\UserController.class
 com\javaschool\OnlineStore\repositories\CategoryRepository.class
 com\javaschool\OnlineStore\controllers\OrderController.class
+com\javaschool\OnlineStore\services\ImageService.class
 com\javaschool\OnlineStore\services\AuthService.class
 com\javaschool\OnlineStore\dtos\OrderDto.class
 com\javaschool\OnlineStore\controllers\AuthController.class

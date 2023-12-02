@@ -49,6 +49,9 @@ public class ProductEntity {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartEntity> cart;
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ImageEntity> images;
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

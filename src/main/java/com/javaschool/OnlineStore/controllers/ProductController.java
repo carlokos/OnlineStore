@@ -42,6 +42,12 @@ public class ProductController {
 		return ResponseEntity.ok(result);
 	}
 
+	@GetMapping("firstImage/{id}")
+	public ResponseEntity<String> getFirstImage(@PathVariable Long id){
+		String result = productService.getFirstImageForProduct(id);
+		return ResponseEntity.ok(result);
+	}
+
 	@PostMapping
 	public ResponseEntity<String> createNewProduct(@RequestBody ProductDto dto){
 		productService.createNewProduct(dto);

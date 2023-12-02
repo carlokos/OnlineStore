@@ -7,11 +7,11 @@ import lombok.Setter;
 
 import java.util.Objects;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "cart")
 @Getter
 @Setter
-@NoArgsConstructor
 public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

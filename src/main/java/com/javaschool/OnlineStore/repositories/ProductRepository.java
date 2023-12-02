@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.javaschool.OnlineStore.models.CategoryEntity;
+import com.javaschool.OnlineStore.models.ImageEntity;
 import com.javaschool.OnlineStore.models.ProductEntity;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
@@ -21,4 +23,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
             "GROUP BY p.id, p.title, p.brand, c.name " +
             "ORDER BY totalSold DESC")
     List<Object[]> findBestSoldProducts();
+
+    @Query("SELECT i FROM ImageEntity i WHERE i.product.id = :productId ORDER BY i.id ASC")
+    Optional<ImageEntity> findFirstImageByProductId(@Param("productId") Long productId);
 }

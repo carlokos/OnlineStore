@@ -1,5 +1,6 @@
 package com.javaschool.OnlineStore.services;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.javaschool.OnlineStore.dtos.ProductDto;
 import com.javaschool.OnlineStore.exceptions.ResourceConflictException;
 import com.javaschool.OnlineStore.exceptions.ResourceNotFoundException;
+import com.javaschool.OnlineStore.mappers.ImageUtil;
 import com.javaschool.OnlineStore.mappers.ProductMapper;
 import com.javaschool.OnlineStore.models.CategoryEntity;
+import com.javaschool.OnlineStore.models.ImageEntity;
 import com.javaschool.OnlineStore.models.ProductEntity;
 import com.javaschool.OnlineStore.repositories.CategoryRepository;
 import com.javaschool.OnlineStore.repositories.ProductRepository;
@@ -66,6 +69,16 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional(readOnly = true)
+    public String getFirstImageForProduct(Long productId) {
+        ImageEntity dbImage = productRepository.findFirstImageByProductId(productId)
+                .orElseThrow(() -> new RuntimeException("No images found for product with id: " + productId));
+        byte[] image = ImageUtil.decompressImage(dbImage.getImageData());
+        String base64Image = Base64.getEncoder().encodeToString(image);
+        
+        return base64Image;
+    }
+
     @Transactional
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
@@ -77,7 +90,7 @@ public class ProductService {
     }
 
     private CategoryEntity loadCategoryById(Long id){
-        return categoryRepository.findById(id)
+        return categoryRepository.findById(Long.valueOf(id))
             .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
     }
 
@@ -86,6 +99,6 @@ public class ProductService {
     }
 
     private ProductEntity mapDtoToEntity(ProductDto dto, ProductEntity entity){
-        return productMapper.mapDtoToEntity(dto, entity, loadCategoryById(dto.getId()));
+        return productMapper.mapDtoToEntity(dto, entity, loadCategoryById(dto.getCategoryId()));
     }
 }
