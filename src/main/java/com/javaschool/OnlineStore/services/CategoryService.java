@@ -60,7 +60,7 @@ public class CategoryService {
     @Transactional
     public CategoryDto createNewCategory(CategoryDto dto) {
         CategoryEntity entity = categoryMapper.mapDtoToEntity(dto, new CategoryEntity());
-        categoryRepository.save(entity);
+        categoryRepository.save(entity); 
         return createCategoryDto(entity);
     }
 

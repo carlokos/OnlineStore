@@ -90,7 +90,7 @@ public class ProductService {
     }
 
     private CategoryEntity loadCategoryById(Long id){
-        return categoryRepository.findById(Long.valueOf(id))
+        return categoryRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
     }
 
