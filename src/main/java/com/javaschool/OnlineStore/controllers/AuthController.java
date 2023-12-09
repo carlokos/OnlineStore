@@ -36,6 +36,12 @@ public class AuthController {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping("/newAdmin")
+    public ResponseEntity<String> newAdmin(@RequestBody CreateNewUserDto dto){
+        authService.newAdmin(dto);
+        return new ResponseEntity<>("New admin added", HttpStatus.OK);
+    }
+
     @GetMapping("/roles")
     public ResponseEntity<List<RolDto>> getUserRoles(){
         List<RolDto> result = authService.getUserRoles();

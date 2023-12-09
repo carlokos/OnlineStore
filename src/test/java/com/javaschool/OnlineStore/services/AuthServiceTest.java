@@ -94,6 +94,53 @@ public class AuthServiceTest {
     }
 
     @Test
+    public void AuthService_newAdmin_SuccessfullyRegistersNewAdmin() {
+        // Arrange
+        CreateNewUserDto newUserDto = CreateNewUserDto.builder()
+            .name("name")
+            .subname("subname")
+            .email("test@admin.com")
+            .password("password")
+            .build();
+
+        UserEntity newUserEntity = UserEntity.builder()
+            .id(1L)
+            .email("test@admin.com")
+            .password("hashedPassword")
+            .roles(Collections.singletonList(RoleEntity.builder().name("ADMIN").build()))
+            .build();
+
+        UserDto userDto = UserDto.builder()
+            .id(1L)
+            .name("name")
+            .subname("subname")
+            .email("test@admin.com")
+            .loginCount(0)
+            .build();
+
+        RoleEntity rolDto = RoleEntity.builder()
+            .id(1L)
+            .name("ADMIN")
+            .build();
+
+        when(userRepositoryMock.existsByEmail(anyString())).thenReturn(false);
+        when(userMapperMock.mapDtoToEntity(newUserDto, new UserEntity())).thenReturn(newUserEntity);
+        when(rolRespositoryMock.findByName(any())).thenReturn(Optional.of(rolDto));
+        when(userMapperMock.createUserDto(any())).thenReturn(userDto);
+
+        // Act
+        UserDto registeredUser = authService.newAdmin(newUserDto);
+
+        // Assert
+        assertNotNull(registeredUser);
+        assertEquals(newUserDto.getEmail(), registeredUser.getEmail());
+        
+        // Verify that save method was called on userRepository
+        verify(userRepositoryMock, times(1)).save(any(UserEntity.class));
+        verify(rolRespositoryMock, times(1)).findByName(any());
+    }
+
+    @Test
     public void AuthService_Register_EmailTakenThrowsException() {
         // Arrange
         CreateNewUserDto existingUserDto = CreateNewUserDto.builder()

@@ -64,6 +64,26 @@ public class AuthControllerTest {
     }
 
     @Test
+    public void testNewAdmin() throws Exception {
+        // Mock data
+        CreateNewUserDto userDto = CreateNewUserDto.builder()
+                .name("name")
+                .subname("subname")
+                .email("email@admin.com")
+                .password("password")
+                .build();
+
+        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/newAdmin")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(userDto)));
+
+        result.andExpect(status().isOk())
+                .andExpect(content().string("New admin added"));
+
+        verify(authService, times(1)).newAdmin(userDto);
+    }
+
+    @Test
     public void testLogin() throws Exception {
         // Mock data
         LogInDto loginDto = LogInDto.builder()

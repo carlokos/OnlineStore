@@ -1,6 +1,7 @@
 package com.javaschool.OnlineStore.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -70,6 +71,9 @@ public class UserService {
     @Transactional
     public void updateUser(Long id, CreateNewUserDto dto){
         UserEntity user = loadUser(id);
+        if(!userRepository.findByEmail(dto.getEmail()).equals(Optional.of(user))){
+            throw new ResourceConflictException("Email already taken");
+        }
         user.setEmail(dto.getEmail());
         user.setName(dto.getName());
         user.setSubname(dto.getSubname());

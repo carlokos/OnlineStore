@@ -174,9 +174,16 @@ public class CategoryServiceTest {
                 .products(new ArrayList<>())
                 .build();
 
+        ProductEntity productInCategoryToDelete = ProductEntity.builder()
+                .id(1L)
+                .title("some product")
+                .category(categoryToDelete)
+                .build();
+
+        //Mocks
         when(categoryRepositoryMock.findById(defaultCategoryId)).thenReturn(java.util.Optional.of(defaultCategory));
         when(categoryRepositoryMock.findById(categoryId)).thenReturn(java.util.Optional.of(categoryToDelete));
-        when(productRepositoryMock.findByCategory(categoryToDelete)).thenReturn(Collections.emptyList());
+        when(productRepositoryMock.findByCategory(categoryToDelete)).thenReturn(Collections.singletonList(productInCategoryToDelete));
 
         // Act
         categoryService.deleteCategory(categoryId);
@@ -189,7 +196,7 @@ public class CategoryServiceTest {
         verify(productRepositoryMock, times(1)).findByCategory(categoryToDelete);
 
         // Verify that setCategory and save were called on each product
-        verify(productRepositoryMock, times(0)).save(any(ProductEntity.class));
+        verify(productRepositoryMock, times(1)).save(any(ProductEntity.class));
 
         // Verify that deleteById was called on the categoryRepository
         verify(categoryRepositoryMock, times(1)).deleteById(categoryId);

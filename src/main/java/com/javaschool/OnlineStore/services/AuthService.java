@@ -51,6 +51,19 @@ public class AuthService {
     }
 
     @Transactional
+    public UserDto newAdmin(CreateNewUserDto dto){
+        if(userRepository.existsByEmail(dto.getEmail())){
+            throw new ResourceConflictException("Email is taken");
+        }
+        UserEntity newAdmin = mapDtoToEntity(dto, new UserEntity());
+        RoleEntity roles = rolRespository.findByName("ADMIN").get();
+        newAdmin.setRoles(Collections.singletonList(roles));
+
+        userRepository.save(newAdmin);
+        return createUserDto(newAdmin);
+    }
+
+    @Transactional
     public AuthResponseDto login(LogInDto dto){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

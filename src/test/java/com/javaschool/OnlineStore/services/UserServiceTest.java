@@ -124,17 +124,44 @@ public class UserServiceTest {
         // Arrange
         Long userId = 1L;
         CreateNewUserDto dto = CreateNewUserDto.builder().build();
-        UserEntity userEntity = UserEntity.builder().build();
+        UserEntity userEntity = UserEntity.builder().id(userId).build();
 
         //Mocks
         when(userRepository.findById(userId)).thenReturn(Optional.of(userEntity));
         when(userRepository.save(userEntity)).thenReturn(userEntity);
+        when(userRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(userEntity));
 
         // Act
         userService.updateUser(userId, dto);
 
         // Assert
         verify(userRepository, times(1)).save(userEntity);
+    }
+
+    @Test
+    public void UserService_UpdateUser_ThrowsResourceConflictException() {
+        //Arrange
+        Long userId = 1L;
+        CreateNewUserDto userDto = CreateNewUserDto.builder()
+            .email("existing email")
+            .build();
+
+        UserEntity userToUpdated = UserEntity.builder()
+            .id(userId)
+            .email("old email")
+            .build();
+
+        UserEntity userWithExistingEmail = UserEntity.builder()
+            .id(2L)
+            .email("existing email")
+            .build();
+
+        //Mocks
+        when(userRepository.findById(userId)).thenReturn(Optional.of(userToUpdated));
+        when(userRepository.findByEmail(userDto.getEmail())).thenReturn(Optional.of(userWithExistingEmail));
+
+        //Assert
+        assertThrows(ResourceConflictException.class, () -> userService.updateUser(userId, userDto));
     }
 
     @Test

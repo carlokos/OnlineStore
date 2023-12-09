@@ -1,17 +1,19 @@
 version: '3.9'
 
 services:
- java_app:
-  container_name: java_app
-  image: online_store_app:1.0.0
-  build: .
-  ports:
-  - 8080:8080
-  depends_on:
-  - java_db
-  volumes:
-  - online_store_volume:/home/app_data
- pgadmin:
+  java_app:
+    container_name: java_app
+    image: online_store_app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - java_db
+    volumes:
+      - online_store_volume:/home/app_data
+    environment:
+      DATABASE_USERNAME: postgres
+  pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
     restart: always
@@ -21,23 +23,34 @@ services:
     ports:
       - "5050:80"
     depends_on:
-     - java_db
- java_db:
-  container_name: java_db
-  image: postgres:12
-  ports:
-  - 5432:5432
-  environment:
-   POSTGRES_USER: postgres
-   POSTGRES_PASSWORD: postgres
-   POSTGRES_DB: java_db
-  volumes:
-  - online_store_volume:/home/db_data
-  
+      - java_db
+  java_db:
+    container_name: java_db
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: java_db
+    volumes:
+      - online_store_volume:/home/db_data
+  sonarqube:
+    container_name: Sonarqube
+    image: sonarqube:latest
+    environment:
+      SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:5432/java_db
+      SONARQUBE_JDBC_USERNAME: postgres
+      SONARQUBE_JDBC_PASSWORD: postgres
+    ports:
+      - "9000:9000"
+    depends_on:
+      - java_db
+
 volumes:
- online_store_volume:
-  driver: local
-  driver_opts:
-   type: none
-   o: bind
-   device: src/main/resources
+  online_store_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: src/main/resources
