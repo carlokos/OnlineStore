@@ -44,17 +44,6 @@ services:
       - java_app
     environment:
       REACT_APP_BACKEND_URL: http://localhost:8080
-  sonarqube:
-    container_name: Sonarqube
-    image: sonarqube:latest
-    environment:
-      SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:5432/java_db
-      SONARQUBE_JDBC_USERNAME: postgres
-      SONARQUBE_JDBC_PASSWORD: postgres
-    ports:
-      - "9000:9000"
-    depends_on:
-      - java_db
 
 volumes:
   online_store_volume:
