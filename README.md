@@ -27,7 +27,6 @@ Access the web app at [localhost:5173](http://localhost:5173) and start explorin
 Hope you enjoy navigating through my OnlineStore!
 
 # Characteristics
-- User-friendly interfaces easy to use
 - Real time updates with cart, orders and products stock
 - Secure login and sign up with scripting password
 - Admin privileges 
