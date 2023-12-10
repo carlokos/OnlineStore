@@ -44,7 +44,7 @@ public class CategoryService {
 
     @Transactional
     public void deleteCategory(Long id) {
-        CategoryEntity defaultCategory = loadCategory(Long.valueOf(0));
+        CategoryEntity defaultCategory = loadCategory(Long.valueOf(1L));
         List<ProductEntity> products = productRepository.findByCategory(loadCategory(id));
         if (!products.isEmpty()) {
             for (ProductEntity product : products) {

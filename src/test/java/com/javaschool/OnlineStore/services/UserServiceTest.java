@@ -151,14 +151,9 @@ public class UserServiceTest {
             .email("old email")
             .build();
 
-        UserEntity userWithExistingEmail = UserEntity.builder()
-            .id(2L)
-            .email("existing email")
-            .build();
-
         //Mocks
         when(userRepository.findById(userId)).thenReturn(Optional.of(userToUpdated));
-        when(userRepository.findByEmail(userDto.getEmail())).thenReturn(Optional.of(userWithExistingEmail));
+        when(userRepository.existsByEmail(any())).thenReturn(true);
 
         //Assert
         assertThrows(ResourceConflictException.class, () -> userService.updateUser(userId, userDto));

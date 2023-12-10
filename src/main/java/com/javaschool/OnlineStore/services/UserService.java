@@ -71,7 +71,9 @@ public class UserService {
     @Transactional
     public void updateUser(Long id, CreateNewUserDto dto){
         UserEntity user = loadUser(id);
-        if(!userRepository.findByEmail(dto.getEmail()).equals(Optional.of(user))){
+        String newEmail = dto.getEmail();
+
+        if(userRepository.existsByEmail(dto.getEmail()) && !newEmail.equals(user.getEmail())){
             throw new ResourceConflictException("Email already taken");
         }
         user.setEmail(dto.getEmail());

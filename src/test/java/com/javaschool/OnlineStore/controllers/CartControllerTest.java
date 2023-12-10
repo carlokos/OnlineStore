@@ -109,7 +109,7 @@ public class CartControllerTest {
         result.andExpect(status().isOk());
 
         // Verifica que el servicio se llamó una vez
-        verify(cartService, times(1)).modifyProductCart(userId, productId);
+        verify(cartService, times(1)).modifyProductCart(userId, productId, 1);
     }
 
     @Test

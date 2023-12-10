@@ -34,6 +34,13 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    public List<ProductDto> getTop10Products(){
+        return productRepository.findTop10BestSoldProducts().stream()
+            .map(this::createProductDto)
+            .toList();
+    }
+
+    @Transactional(readOnly = true)
     public ProductDto getProductById(Long id){
         ProductEntity product = loadProduct(id);
         return createProductDto(product);

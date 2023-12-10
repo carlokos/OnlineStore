@@ -30,6 +30,12 @@ public class ProductController {
 		return ResponseEntity.ok(result);
 	}
 
+	@GetMapping("/topTen")
+	public ResponseEntity<List<ProductDto>> getTop10Producst(){
+		List<ProductDto> result = productService.getTop10Products();
+		return ResponseEntity.ok(result);
+	}
+
 	@GetMapping("/category/{id}")
 	public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@PathVariable Long id){
 		List<ProductDto> result = productService.getAllProductsByCategory(id);

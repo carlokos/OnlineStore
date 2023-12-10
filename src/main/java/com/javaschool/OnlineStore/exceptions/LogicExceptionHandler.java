@@ -15,7 +15,7 @@ public class LogicExceptionHandler {
 
     @ExceptionHandler(ResourceConflictException.class)
     public ResponseEntity<?> handleConflict(ResourceConflictException e){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
     
     @ExceptionHandler(Exception.class)

@@ -66,7 +66,7 @@ public class CartServiceTest {
         when(cartRepository.findByUserIdAndProductId(userId, productId)).thenReturn(cartEntity);
 
         // Act
-        cartService.modifyProductCart(userId, productId);
+        cartService.modifyProductCart(userId, productId, 1);
 
         // Assert
         assertEquals(2, cartEntity.getQuantity());

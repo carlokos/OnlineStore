@@ -26,4 +26,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("SELECT i FROM ImageEntity i WHERE i.product.id = :productId ORDER BY i.id ASC")
     Optional<ImageEntity> findFirstImageByProductId(@Param("productId") Long productId);
+
+    @Query("SELECT p " +
+            "FROM ProductEntity p " +
+            "JOIN p.Order_detail od " +
+            "GROUP BY p " +
+            "ORDER BY SUM(od.quantity) DESC")
+    List<ProductEntity> findTop10BestSoldProducts();
 }

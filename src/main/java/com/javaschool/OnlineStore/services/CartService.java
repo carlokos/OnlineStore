@@ -33,11 +33,11 @@ public class CartService {
     }
 
     @Transactional
-    public void modifyProductCart(Long user_id, Long product_id){
-        CartEntity cart = loadCartByUserAndProduct(user_id, product_id);
-
-        if(cart != null){
-            cart.setQuantity(cart.getQuantity() + 1);
+    public void modifyProductCart(Long userId, Long productId, int quantity) {
+        CartEntity cart = loadCartByUserAndProduct(userId, productId);
+    
+        if (cart != null) {
+            cart.setQuantity(cart.getQuantity() + quantity);
             cartRepository.save(cart);
         }
     }

@@ -35,6 +35,15 @@ services:
       POSTGRES_DB: java_db
     volumes:
       - online_store_volume:/home/db_data
+  frontend:
+    container_name: Frontend
+    build: ../StoreFrontend/OnlineStoreFE
+    ports:
+      - "5173:5173"
+    depends_on:
+      - java_app
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:8080
   sonarqube:
     container_name: Sonarqube
     image: sonarqube:latest

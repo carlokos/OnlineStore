@@ -161,8 +161,8 @@ public class CategoryServiceTest {
     @Test
     public void CategoryService_DeleteCategory_SuccessfullyDeletesCategory() {
         // Arrange
-        Long categoryId = 1L;
-        Long defaultCategoryId = 0L;
+        Long categoryId = 2L;
+        Long defaultCategoryId = 1L;
         CategoryEntity defaultCategory = CategoryEntity.builder()
             .id(defaultCategoryId)
             .name("Default category")
