@@ -1,5 +1,5 @@
 # Online Store Backend
-Project created at JavaSchool 2023, this repository saves my API for my onlineStore. It's a fully functional API using Spring, it is docker-file and it includes tests to check the code
+Project created at JavaSchool 2023, this repository saves my API for my onlineStore. It's a fully functional API using Spring and maven, it is docker-file and it includes tests to check the code
 
 
 # How to deploy
